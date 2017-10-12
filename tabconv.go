@@ -47,7 +47,7 @@ func csvToXlsx(filepath, outdir string, delim rune) error {
 
 	basename := basename(filepath)
 
-	xlFile, err := xlsx.OpenFile()
+	xlFile := xlsx.NewFile()
 	if err != nil {
 		return errors.Wrap(err, "csv to xlsx")
 	}
@@ -73,6 +73,7 @@ func csvToXlsx(filepath, outdir string, delim rune) error {
 
 	r := csv.NewReader(f)
 	r.Comma = delim
+	r.FieldsPerRecord = -1
 
 	if err := copySheetCsv(sheet, r); err != nil {
 		return errors.Wrap(err, "csv to xlsx")
