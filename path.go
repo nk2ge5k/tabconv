@@ -3,7 +3,6 @@ package tabconv
 import (
 	"os"
 	"os/user"
-	"path"
 	"path/filepath"
 	"strings"
 )
@@ -15,7 +14,7 @@ var (
 
 // basename returns filename without extension
 func basename(name string) string {
-	name = path.Base(name)
+	name = filepath.Base(name)
 	ext := filepath.Ext(name)
 	return name[:len(name)-len(ext)]
 }
